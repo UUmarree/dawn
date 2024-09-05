@@ -1,0 +1,129 @@
+<style>
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+     }
+     
+    .Main-Menu{
+      display: flex;
+     
+      background-color: #f5f5f5;
+    }
+    .logo-container{
+      margin: auto;
+    }
+    .searchlogo{
+      transform: rotate(-90deg);
+    }
+    .search-container{
+      width:30px ;
+      margin-left: 5%;
+      display: flex;
+      align-items: end;
+    }
+    .asset-container{
+      width:fit-content ;
+      margin-right: 5em;
+      display: flex;
+      align-items: end;
+    }
+    .menu-logo-container{
+      display: none;
+    }
+    .search-input {
+      display: none; /* Hide the input by default */
+      padding: 8px;
+      border-radius: 50px;
+    }
+    @media(max-width:768px){
+      .search-container{
+        display: none;
+      }
+      .asset-container{
+        display: none;
+      }
+      .logo-container{
+        width: 100%;
+       align-self: start;
+      }
+      .menu-logo-container{
+        display: block;
+        margin-left: auto;
+        width: 8%;
+      }
+      .menu-logo{
+        width: 100%;
+      }
+    }
+   
+   </style>
+
+<header class="Main-Menu">
+    <div class="search-container">
+        
+    <img class="searchlogo" src="{{ section.settings.image1 | image_url: width: '100%' }}" alt="Description of image">
+       
+        <input type="text" id="search-input" class="search-input" placeholder="Search...">
+    </div>
+    <div class="logo-container">
+      <img  src="{{ section.settings.image2 | image_url: width: '100%'}}" alt="Description of image">
+       
+    </div>
+
+    <div class="asset-container">
+      <img src="{{ section.settings.image3 | image_url: width: '100%'}}" alt="Description of image">
+    </div>
+    <div class="menu-logo-container">
+        <svg
+            class="menu-logo"
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="100"
+            height="100"
+            viewBox="0 0 50 50"
+        >
+            <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+        </svg>
+    </div>
+</header>
+<script>
+  function toggleSearchInput() {
+    const logo= document.querySelector('.searchlogo')
+    const input = document.getElementById('search-input');
+    if (input.style.display === 'none' || input.style.display === '') {
+        input.style.display = 'inline-block';
+        logo.style.display = 'none';
+    } else {
+        input.style.display = 'none';
+    }
+}
+</script>
+{% schema %}
+{
+    "name": "Custom Header",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image1",
+            "label": "Image 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "image2",
+            "label": "Image 2"
+        },
+        {
+            "type": "image_picker",
+            "id": "image3",
+            "label": "Image 3"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Header"
+        }
+    ]
+}
+{% endschema %}

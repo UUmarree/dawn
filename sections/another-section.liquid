@@ -1,0 +1,58 @@
+<style>
+ /* Default text alignment */
+.text-container {
+    text-align: left; /* Default alignment */
+  }
+  
+  /* Align center */
+  .align-center {
+    text-align: center;
+  }
+  
+  /* Align right */
+  .align-right {
+    text-align: right;
+  }
+  
+</style>
+<div class="text-container {% if section.settings.text_alignment == 'center' %}align-center{% elsif section.settings.text_alignment == 'right' %}align-right{% else %}align-left{% endif %}">
+  <p>{{ section.settings.my_text }}</p>
+</div>
+{% schema %}
+{
+  "name": "Text Alignment",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+        "type": "text",
+         "id": "my_text",
+         "label": "Add text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default"
+    }
+  ]
+}
+{% endschema %}
+

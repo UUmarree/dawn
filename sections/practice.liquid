@@ -1,0 +1,143 @@
+<style>
+  .dynamic-font-size {
+    font-size: {{ section.settings.font_size | append: 'px' }};
+    font-family: "{{ section.settings.heading_font }}";
+    color: black;
+    text-align: {{ section.settings.alignment}}; /* Apply text alignment */
+  }
+</style>
+
+<div>
+  {% if section.settings.banner_images %}
+    <img class="banner-image__Desktop" src="{{ section.settings.banner_images | img_url: 'master' }}" alt="Image Description">
+  {% endif %}
+
+  {% if section.settings.show_announcement %}
+    <p class="dynamic-font-size">{{ section.settings.home_welcome_message }}</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Section-Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_images",
+      "label": "Add Images"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement"
+    },
+    {
+      "type": "number",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "default": 20
+    },
+    {
+      "type": "radio",
+      "id": "logo_aligment",
+      "label": "Logo alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "centered",
+          "label": "Centered"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "type": "select",
+      "id": "sizes",
+      "label": "Sizes",
+      "options": [
+        {
+          "value": "xs",
+          "label": "X-small"
+        },
+        {
+          "value": "s",
+          "label": "Small"
+        },
+        {
+          "value": "m",
+          "label": "Medium"
+        },
+        {
+          "value": "l",
+          "label": "Large"
+        },
+        {
+          "value": "xl",
+          "label": "X-large"
+        },
+        {
+          "value": "xxl",
+          "label": "XX-large"
+        }
+      ],
+      "default": "m"
+    },
+    {
+      "type": "textarea",
+      "id": "home_welcome_message",
+      "label": "Welcome message",
+      "default": "Welcome to my shop!"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "Text alignment",
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section-Banner"
+    }
+  ]
+}
+{% endschema %}

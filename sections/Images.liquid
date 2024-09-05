@@ -1,0 +1,125 @@
+<style>
+.image-container{
+ display:flex;
+ flex-direction:row;
+ width:100%;
+ position: relative;
+ }
+ img{
+    width: 50%;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+  }
+.button1{
+ position:absolute;
+ top:90%;
+ left:25%;
+ transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: black ;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+
+}
+.button1:hover{
+    background-color: black;
+    color:white ;
+    transition: 0.7s;
+}
+a:visited {
+    color: inherit; 
+  }
+  
+  
+  a:active {
+    color: #0056b3; 
+  }
+  .button2{
+    position:absolute;
+    top:90%;
+    left:75%;
+    transform: translate(-50%, -50%);
+     padding: 10px 20px;
+     font-size: 16px;
+     font-weight: bold;
+     text-align: center;
+     color: black ;
+     background-color: white;
+     border: none;
+     border-radius: 20px;
+   
+   }
+   .button2:hover{
+       background-color: black;
+       color:white ;
+       transition: 0.7s;
+   }
+
+@media(max-width:768px){
+    .image-container{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+    }
+    img{
+        width: 100%;
+    }
+    .button1{
+    top:43%;
+    left:50%;
+    }
+    .button2{
+        top:92%;
+        left:50%;
+    }
+}
+</style>
+
+
+    
+<div class="image-container">
+ <button class=button1><a href="{{ section.settings.button_url }}">Shop Now </button></a>  <img class="Images" src="{{ section.settings.Image | img_url: 'master' }}" alt="">
+ <button class=button2><a href="{{ section.settings.button_url1 }}">Shop Now </button></a></button> <img class="Images" src="{{ section.settings.Image2 | img_url: 'master' }}" alt="">
+  
+</div>
+
+
+{% schema %}
+{
+  "name": "Banner-Images",
+  "settings": [
+    {
+    "type": "image_picker",
+    "id": "Image",
+    "label": "Images"
+    },
+    {
+    "type":"image_picker",
+    "id": "Image2",
+     "label": "Images"
+    },
+    {
+    "type": "url",
+    "id": "button_url",
+    "label": "Button URL",
+    },
+    {
+     "type":"url",
+     "id": "button_url1",
+     "label":"Button URL",
+    }
+  ],
+ 
+  "presets": [
+    {
+      "name": "Banner-Images"
+    }
+  ]
+}
+{% endschema %}
